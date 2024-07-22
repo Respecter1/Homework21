@@ -1,7 +1,7 @@
 /*
-	Припустимо, що є дві вулиці, що перетинаються, з двостороннім рухом, світлофорами і пішохідними переходами
-	. Потрібно створити віртуальну модель, щоб визначити, чи дозволить зміна частоти подачі сигналу світлофора
-	  зробити дорожній рух рівномірнішим. Які об'єкти та які класи будуть потрібні для імітації цієї ситуації?
+	РџСЂРёРїСѓСЃС‚РёРјРѕ, С‰Рѕ С” РґРІС– РІСѓР»РёС†С–, С‰Рѕ РїРµСЂРµС‚РёРЅР°СЋС‚СЊСЃСЏ, Р· РґРІРѕСЃС‚РѕСЂРѕРЅРЅС–Рј СЂСѓС…РѕРј, СЃРІС–С‚Р»РѕС„РѕСЂР°РјРё С– РїС–С€РѕС…С–РґРЅРёРјРё РїРµСЂРµС…РѕРґР°РјРё
+	. РџРѕС‚СЂС–Р±РЅРѕ СЃС‚РІРѕСЂРёС‚Рё РІС–СЂС‚СѓР°Р»СЊРЅСѓ РјРѕРґРµР»СЊ, С‰РѕР± РІРёР·РЅР°С‡РёС‚Рё, С‡Рё РґРѕР·РІРѕР»РёС‚СЊ Р·РјС–РЅР° С‡Р°СЃС‚РѕС‚Рё РїРѕРґР°С‡С– СЃРёРіРЅР°Р»Сѓ СЃРІС–С‚Р»РѕС„РѕСЂР°
+	  Р·СЂРѕР±РёС‚Рё РґРѕСЂРѕР¶РЅС–Р№ СЂСѓС… СЂС–РІРЅРѕРјС–СЂРЅС–С€РёРј. РЇРєС– РѕР±'С”РєС‚Рё С‚Р° СЏРєС– РєР»Р°СЃРё Р±СѓРґСѓС‚СЊ РїРѕС‚СЂС–Р±РЅС– РґР»СЏ С–РјС–С‚Р°С†С–С— С†С–С”С— СЃРёС‚СѓР°С†С–С—?
 */
 #pragma once
 #include <iostream>
@@ -10,26 +10,26 @@
 #include <ctime>
 #include <chrono>
 
-// Enum для напрямку руху
+// Enum РґР»СЏ РЅР°РїСЂСЏРјРєСѓ СЂСѓС…Сѓ
 enum class Traffic {
     ONE_WAY,
     TWO_WAY
 };
 
-// Enum для станів світлофора
+// Enum РґР»СЏ СЃС‚Р°РЅС–РІ СЃРІС–С‚Р»РѕС„РѕСЂР°
 enum class TrafficLight {
     GREEN,
     YELLOW,
     RED
 };
 
-// Клас для моделювання дорожнього руху
+// РљР»Р°СЃ РґР»СЏ РјРѕРґРµР»СЋРІР°РЅРЅСЏ РґРѕСЂРѕР¶РЅСЊРѕРіРѕ СЂСѓС…Сѓ
 class MyTraffic {
 public:
     MyTraffic() : light1(TrafficLight::RED), light2(TrafficLight::GREEN) {}
     ~MyTraffic() {}
 
-    // Метод для перемикання стану світлофорів
+    // РњРµС‚РѕРґ РґР»СЏ РїРµСЂРµРјРёРєР°РЅРЅСЏ СЃС‚Р°РЅСѓ СЃРІС–С‚Р»РѕС„РѕСЂС–РІ
     void switchLights() {
         if (light1 == TrafficLight::GREEN) {
             light1 = TrafficLight::RED;
@@ -41,7 +41,7 @@ public:
         }
     }
 
-    // Метод для отримання стану світлофора
+    // РњРµС‚РѕРґ РґР»СЏ РѕС‚СЂРёРјР°РЅРЅСЏ СЃС‚Р°РЅСѓ СЃРІС–С‚Р»РѕС„РѕСЂР°
     TrafficLight getLight1() const { return light1; }
     TrafficLight getLight2() const { return light2; }
 
@@ -50,7 +50,7 @@ private:
     TrafficLight light2;
 };
 
-// Клас для моделювання вулиці
+// РљР»Р°СЃ РґР»СЏ РјРѕРґРµР»СЋРІР°РЅРЅСЏ РІСѓР»РёС†С–
 class Street {
 public:
     Street(const std::string& name, Traffic road = Traffic::TWO_WAY)
@@ -68,7 +68,7 @@ private:
 
 int Street::crosswalk = 0;
 
-// Клас для моделювання перехрестя
+// РљР»Р°СЃ РґР»СЏ РјРѕРґРµР»СЋРІР°РЅРЅСЏ РїРµСЂРµС…СЂРµСЃС‚СЏ
 class Crossroads {
 public:
     Crossroads(std::shared_ptr<Street> street1, std::shared_ptr<Street> street2)
@@ -77,22 +77,22 @@ public:
     ~Crossroads() {}
 
     void controlTrafficLights(MyTraffic& traffic) {
-        // Отримуємо поточний час
+        // РћС‚СЂРёРјСѓС”РјРѕ РїРѕС‚РѕС‡РЅРёР№ С‡Р°СЃ
         auto now = std::chrono::system_clock::now();
         std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
         std::tm localTime;
 
-        // Використовуємо localtime_s для отримання локального часу
+        // Р’РёРєРѕСЂРёСЃС‚РѕРІСѓС”РјРѕ localtime_s РґР»СЏ РѕС‚СЂРёРјР°РЅРЅСЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ С‡Р°СЃСѓ
         localtime_s(&localTime, &currentTime);
 
-        // Отримуємо поточні хвилини
+        // РћС‚СЂРёРјСѓС”РјРѕ РїРѕС‚РѕС‡РЅС– С…РІРёР»РёРЅРё
         int currentMinutes = localTime.tm_min;
 
         if (currentMinutes % 2 == 0) {
             traffic.switchLights();
         }
 
-        // Виводимо стан світлофорів
+        // Р’РёРІРѕРґРёРјРѕ СЃС‚Р°РЅ СЃРІС–С‚Р»РѕС„РѕСЂС–РІ
         std::cout << "The traffic light on the first street is "
             << (traffic.getLight1() == TrafficLight::GREEN ? "green." : "red.")
             << std::endl;
