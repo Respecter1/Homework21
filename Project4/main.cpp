@@ -1,6 +1,6 @@
 /*
-	Спроектуйте інтерфейси до класів до програми, що ви описали у вправі 3, яка стосується резервування 
-	готельних номерів.
+	РЎРїСЂРѕРµРєС‚СѓР№С‚Рµ С–РЅС‚РµСЂС„РµР№СЃРё РґРѕ РєР»Р°СЃС–РІ РґРѕ РїСЂРѕРіСЂР°РјРё, С‰Рѕ РІРё РѕРїРёСЃР°Р»Рё Сѓ РІРїСЂР°РІС– 3, СЏРєР° СЃС‚РѕСЃСѓС”С‚СЊСЃСЏ СЂРµР·РµСЂРІСѓРІР°РЅРЅСЏ 
+	РіРѕС‚РµР»СЊРЅРёС… РЅРѕРјРµСЂС–РІ.
 */
 
 #include <iostream>
@@ -8,7 +8,7 @@
 #include <string>
 #include <memory>
 
-// Користувач
+// РљРѕСЂРёСЃС‚СѓРІР°С‡
 class User {
 public:
     User(const std::string& name) : name(name) {}
@@ -17,7 +17,7 @@ private:
     std::string name;
 };
 
-// Управління користувачами
+// РЈРїСЂР°РІР»С–РЅРЅСЏ РєРѕСЂРёСЃС‚СѓРІР°С‡Р°РјРё
 class UserManager {
 public:
     void registerUser(const std::string& name) {
@@ -34,7 +34,7 @@ private:
     std::vector<std::shared_ptr<User>> users;
 };
 
-// Конференція
+// РљРѕРЅС„РµСЂРµРЅС†С–СЏ
 class Conference {
 public:
     Conference(const std::string& title) : title(title) {}
@@ -43,7 +43,7 @@ private:
     std::string title;
 };
 
-// Управління конференціями
+// РЈРїСЂР°РІР»С–РЅРЅСЏ РєРѕРЅС„РµСЂРµРЅС†С–СЏРјРё
 class ConferenceManager {
 public:
     void createConference(const std::string& title) {
@@ -60,7 +60,7 @@ private:
     std::vector<std::shared_ptr<Conference>> conferences;
 };
 
-// Готельний номер
+// Р“РѕС‚РµР»СЊРЅРёР№ РЅРѕРјРµСЂ
 class HotelRoom {
 public:
     HotelRoom(int number) : number(number), available(true) {}
@@ -73,7 +73,7 @@ private:
     bool available;
 };
 
-// Управління готелем
+// РЈРїСЂР°РІР»С–РЅРЅСЏ РіРѕС‚РµР»РµРј
 class HotelManager {
 public:
     void addRoom(int number) {
@@ -103,7 +103,7 @@ private:
     std::vector<std::shared_ptr<HotelRoom>> rooms;
 };
 
-// Основний клас системи
+// РћСЃРЅРѕРІРЅРёР№ РєР»Р°СЃ СЃРёСЃС‚РµРјРё
 class ConferenceSystem {
 public:
     ConferenceSystem()
@@ -124,21 +124,21 @@ private:
 int main() {
     ConferenceSystem system;
 
-    // Реєстрація користувачів
+    // Р РµС”СЃС‚СЂР°С†С–СЏ РєРѕСЂРёСЃС‚СѓРІР°С‡С–РІ
     system.getUserManager()->registerUser("Alice");
     system.getUserManager()->registerUser("Bob");
 
-    // Створення конференцій
+    // РЎС‚РІРѕСЂРµРЅРЅСЏ РєРѕРЅС„РµСЂРµРЅС†С–Р№
     system.getConferenceManager()->createConference("Tech Conference");
 
-    // Додавання готельних номерів
+    // Р”РѕРґР°РІР°РЅРЅСЏ РіРѕС‚РµР»СЊРЅРёС… РЅРѕРјРµСЂС–РІ
     system.getHotelManager()->addRoom(101);
     system.getHotelManager()->addRoom(102);
 
-    // Бронювання номерів
+    // Р‘СЂРѕРЅСЋРІР°РЅРЅСЏ РЅРѕРјРµСЂС–РІ
     system.getHotelManager()->bookRoom(101);
 
-    // Вивід списку користувачів, конференцій та номерів
+    // Р’РёРІС–Рґ СЃРїРёСЃРєСѓ РєРѕСЂРёСЃС‚СѓРІР°С‡С–РІ, РєРѕРЅС„РµСЂРµРЅС†С–Р№ С‚Р° РЅРѕРјРµСЂС–РІ
     std::cout << "Users:" << std::endl;
     system.getUserManager()->listUsers();
 
