@@ -1,7 +1,7 @@
 /*
-    Ускладнимо ситуацію з вправи 1. Припустимо, що є три види водіїв: таксисти, які переїжджають перехід на червоне світло; не місцеві, які їдуть повільно та обережно
-    ; і місцеві, які ведуть машини по-різному, залежно від уявлень про свою "крутість". Також є два типи пішоходів: місцеві, які переходять вулицю, де їм заманеться
-    , і туристи, які переходять вулицю тільки на зелене світло. А крім того, є ще велосипедисти, які поводяться то як пішоходи, то як водії. Як ці міркування змінять модель?
+    РЈСЃРєР»Р°РґРЅРёРјРѕ СЃРёС‚СѓР°С†С–СЋ Р· РІРїСЂР°РІРё 1. РџСЂРёРїСѓСЃС‚РёРјРѕ, С‰Рѕ С” С‚СЂРё РІРёРґРё РІРѕРґС–С—РІ: С‚Р°РєСЃРёСЃС‚Рё, СЏРєС– РїРµСЂРµС—Р¶РґР¶Р°СЋС‚СЊ РїРµСЂРµС…С–Рґ РЅР° С‡РµСЂРІРѕРЅРµ СЃРІС–С‚Р»Рѕ; РЅРµ РјС–СЃС†РµРІС–, СЏРєС– С—РґСѓС‚СЊ РїРѕРІС–Р»СЊРЅРѕ С‚Р° РѕР±РµСЂРµР¶РЅРѕ
+    ; С– РјС–СЃС†РµРІС–, СЏРєС– РІРµРґСѓС‚СЊ РјР°С€РёРЅРё РїРѕ-СЂС–Р·РЅРѕРјСѓ, Р·Р°Р»РµР¶РЅРѕ РІС–Рґ СѓСЏРІР»РµРЅСЊ РїСЂРѕ СЃРІРѕСЋ "РєСЂСѓС‚С–СЃС‚СЊ". РўР°РєРѕР¶ С” РґРІР° С‚РёРїРё РїС–С€РѕС…РѕРґС–РІ: РјС–СЃС†РµРІС–, СЏРєС– РїРµСЂРµС…РѕРґСЏС‚СЊ РІСѓР»РёС†СЋ, РґРµ С—Рј Р·Р°РјР°РЅРµС‚СЊСЃСЏ
+    , С– С‚СѓСЂРёСЃС‚Рё, СЏРєС– РїРµСЂРµС…РѕРґСЏС‚СЊ РІСѓР»РёС†СЋ С‚С–Р»СЊРєРё РЅР° Р·РµР»РµРЅРµ СЃРІС–С‚Р»Рѕ. Рђ РєСЂС–Рј С‚РѕРіРѕ, С” С‰Рµ РІРµР»РѕСЃРёРїРµРґРёСЃС‚Рё, СЏРєС– РїРѕРІРѕРґСЏС‚СЊСЃСЏ С‚Рѕ СЏРє РїС–С€РѕС…РѕРґРё, С‚Рѕ СЏРє РІРѕРґС–С—. РЇРє С†С– РјС–СЂРєСѓРІР°РЅРЅСЏ Р·РјС–РЅСЏС‚СЊ РјРѕРґРµР»СЊ?
 */
 
 
@@ -12,29 +12,29 @@
 #include <ctime>
 #include <chrono>
 #include <vector>
-#include <cstdlib> // для std::rand
+#include <cstdlib> // РґР»СЏ std::rand
 
-// Enum для напрямку руху
+// Enum РґР»СЏ РЅР°РїСЂСЏРјРєСѓ СЂСѓС…Сѓ
 enum class Traffic {
     ONE_WAY,
     TWO_WAY
 };
 
-// Enum для станів світлофора
+// Enum РґР»СЏ СЃС‚Р°РЅС–РІ СЃРІС–С‚Р»РѕС„РѕСЂР°
 enum class TrafficLight {
     GREEN,
     YELLOW,
     RED
 };
 
-// Базовий клас для учасників дорожнього руху
+// Р‘Р°Р·РѕРІРёР№ РєР»Р°СЃ РґР»СЏ СѓС‡Р°СЃРЅРёРєС–РІ РґРѕСЂРѕР¶РЅСЊРѕРіРѕ СЂСѓС…Сѓ
 class Participant {
 public:
     virtual void act() const = 0;
     virtual ~Participant() {}
 };
 
-// Класи для водіїв
+// РљР»Р°СЃРё РґР»СЏ РІРѕРґС–С—РІ
 class Driver : public Participant {
 public:
     virtual void drive() const = 0;
@@ -64,7 +64,7 @@ public:
     }
 };
 
-// Класи для пішоходів
+// РљР»Р°СЃРё РґР»СЏ РїС–С€РѕС…РѕРґС–РІ
 class Pedestrian : public Participant {
 public:
     virtual void walk() const = 0;
@@ -87,7 +87,7 @@ public:
     }
 };
 
-// Клас для велосипедистів
+// РљР»Р°СЃ РґР»СЏ РІРµР»РѕСЃРёРїРµРґРёСЃС‚С–РІ
 class Cyclist : public Participant {
 public:
     void act() const override {
@@ -100,13 +100,13 @@ public:
     }
 };
 
-// Клас для моделювання дорожнього руху
+// РљР»Р°СЃ РґР»СЏ РјРѕРґРµР»СЋРІР°РЅРЅСЏ РґРѕСЂРѕР¶РЅСЊРѕРіРѕ СЂСѓС…Сѓ
 class MyTraffic {
 public:
     MyTraffic() : light1(TrafficLight::RED), light2(TrafficLight::GREEN) {}
     ~MyTraffic() {}
 
-    // Метод для перемикання стану світлофорів
+    // РњРµС‚РѕРґ РґР»СЏ РїРµСЂРµРјРёРєР°РЅРЅСЏ СЃС‚Р°РЅСѓ СЃРІС–С‚Р»РѕС„РѕСЂС–РІ
     void switchLights() {
         if (light1 == TrafficLight::GREEN) {
             light1 = TrafficLight::RED;
@@ -118,7 +118,7 @@ public:
         }
     }
 
-    // Метод для отримання стану світлофора
+    // РњРµС‚РѕРґ РґР»СЏ РѕС‚СЂРёРјР°РЅРЅСЏ СЃС‚Р°РЅСѓ СЃРІС–С‚Р»РѕС„РѕСЂР°
     TrafficLight getLight1() const { return light1; }
     TrafficLight getLight2() const { return light2; }
 
@@ -127,7 +127,7 @@ private:
     TrafficLight light2;
 };
 
-// Клас для моделювання вулиці
+// РљР»Р°СЃ РґР»СЏ РјРѕРґРµР»СЋРІР°РЅРЅСЏ РІСѓР»РёС†С–
 class Street {
 public:
     Street(const std::string& name, Traffic road = Traffic::TWO_WAY)
@@ -145,7 +145,7 @@ private:
 
 int Street::crosswalk = 0;
 
-// Клас для моделювання перехрестя
+// РљР»Р°СЃ РґР»СЏ РјРѕРґРµР»СЋРІР°РЅРЅСЏ РїРµСЂРµС…СЂРµСЃС‚СЏ
 class Crossroads {
 public:
     Crossroads(std::shared_ptr<Street> street1, std::shared_ptr<Street> street2)
@@ -154,22 +154,22 @@ public:
     ~Crossroads() {}
 
     void controlTrafficLights(MyTraffic& traffic, const std::vector<std::shared_ptr<Participant>>& participants) {
-        // Отримуємо поточний час
+        // РћС‚СЂРёРјСѓС”РјРѕ РїРѕС‚РѕС‡РЅРёР№ С‡Р°СЃ
         auto now = std::chrono::system_clock::now();
         std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
         std::tm localTime;
 
-        // Використовуємо localtime_s для отримання локального часу
+        // Р’РёРєРѕСЂРёСЃС‚РѕРІСѓС”РјРѕ localtime_s РґР»СЏ РѕС‚СЂРёРјР°РЅРЅСЏ Р»РѕРєР°Р»СЊРЅРѕРіРѕ С‡Р°СЃСѓ
         localtime_s(&localTime, &currentTime);
 
-        // Отримуємо поточні хвилини
+        // РћС‚СЂРёРјСѓС”РјРѕ РїРѕС‚РѕС‡РЅС– С…РІРёР»РёРЅРё
         int currentMinutes = localTime.tm_min;
 
         if (currentMinutes % 2 == 0) {
             traffic.switchLights();
         }
 
-        // Виводимо стан світлофорів
+        // Р’РёРІРѕРґРёРјРѕ СЃС‚Р°РЅ СЃРІС–С‚Р»РѕС„РѕСЂС–РІ
         std::cout << "The traffic light on the first street is "
             << (traffic.getLight1() == TrafficLight::GREEN ? "green." : "red.")
             << std::endl;
@@ -177,7 +177,7 @@ public:
             << (traffic.getLight2() == TrafficLight::GREEN ? "green." : "red.")
             << std::endl;
 
-        // Виводимо дії учасників дорожнього руху
+        // Р’РёРІРѕРґРёРјРѕ РґС–С— СѓС‡Р°СЃРЅРёРєС–РІ РґРѕСЂРѕР¶РЅСЊРѕРіРѕ СЂСѓС…Сѓ
         for (const auto& participant : participants) {
             participant->act();
         }
@@ -195,7 +195,7 @@ int main() {
 
     Crossroads myMove(street1, street2);
 
-    // Створюємо учасників дорожнього руху
+    // РЎС‚РІРѕСЂСЋС”РјРѕ СѓС‡Р°СЃРЅРёРєС–РІ РґРѕСЂРѕР¶РЅСЊРѕРіРѕ СЂСѓС…Сѓ
     std::vector<std::shared_ptr<Participant>> participants = {
         std::make_shared<TaxiDriver>(),
         std::make_shared<LocalDriver>(),
